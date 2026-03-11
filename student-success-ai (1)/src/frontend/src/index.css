@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@import "tailwindcss-animate";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   FONT FACES
+   ============================================================ */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN TOKENS — Dark Theme (Deep Space + Violet AI)
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --background: 0.1 0.015 265;
+  --foreground: 0.93 0.01 260;
+
+  /* Card / Popover */
+  --card: 0.13 0.018 265;
+  --card-foreground: 0.93 0.01 260;
+  --popover: 0.13 0.018 265;
+  --popover-foreground: 0.93 0.01 260;
+
+  /* Primary — Vivid Violet */
+  --primary: 0.62 0.22 285;
+  --primary-foreground: 0.98 0.005 260;
+
+  /* Secondary */
+  --secondary: 0.18 0.02 265;
+  --secondary-foreground: 0.75 0.02 260;
+
+  /* Muted */
+  --muted: 0.18 0.018 265;
+  --muted-foreground: 0.5 0.02 260;
+
+  /* Accent — Electric Cyan */
+  --accent: 0.7 0.15 200;
+  --accent-foreground: 0.1 0.015 265;
+
+  /* Destructive */
+  --destructive: 0.55 0.22 25;
+  --destructive-foreground: 0.98 0.005 260;
+
+  /* Borders & Input */
+  --border: 0.22 0.02 265;
+  --input: 0.22 0.02 265;
+  --ring: 0.62 0.22 285;
+
+  /* Radius */
+  --radius: 0.6rem;
+
+  /* Charts */
+  --chart-1: 0.62 0.22 285;
+  --chart-2: 0.7 0.15 200;
+  --chart-3: 0.65 0.18 145;
+  --chart-4: 0.65 0.18 45;
+  --chart-5: 0.65 0.2 25;
+
+  /* Sidebar */
+  --sidebar: 0.12 0.018 265;
+  --sidebar-foreground: 0.93 0.01 260;
+  --sidebar-primary: 0.62 0.22 285;
+  --sidebar-primary-foreground: 0.98 0.005 260;
+  --sidebar-accent: 0.18 0.02 265;
+  --sidebar-accent-foreground: 0.75 0.02 260;
+  --sidebar-border: 0.22 0.02 265;
+  --sidebar-ring: 0.62 0.22 285;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+* {
+  border-color: oklch(var(--border));
+  outline-color: oklch(var(--ring) / 0.5);
+}
+
+html {
+  font-family: "Sora", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: oklch(var(--background));
+  color: oklch(var(--foreground));
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.font-display {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(0.7 0.2 285) 0%,
+    oklch(0.72 0.15 200) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: oklch(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Mesh gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+      ellipse at 20% 0%,
+      oklch(0.62 0.22 285 / 0.07) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 80% 30%,
+      oklch(0.7 0.15 200 / 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      oklch(0.62 0.22 285 / 0.04) 0%,
+      transparent 60%
+    ), oklch(0.1 0.015 265);
+  pointer-events: none;
+}
